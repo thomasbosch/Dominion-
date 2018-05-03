@@ -15,7 +15,7 @@ class Main {
 		// Prépare les piles "royaume" de la réserve (hors cartes communes)
 		List<CardList> kingdomStacks = new ArrayList<CardList>();
 		CardList stack;
-		// Ajouter un bloc pour chaque carte royaume à utiliser
+		// Ajouter un bloc pour chaque carte royaume à utilise
 		kingdomStacks.add(stack);
 		stack = new CardList();
 		for (int i = 0; i < 10; i++) {
