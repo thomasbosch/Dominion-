@@ -22,7 +22,7 @@ class Main {
 			stack.add(new Village());
 		}
 		
-		// Instancie et exécute une partie
+		// Instancie et exécute une partie genitale
 		Game g = new Game(playerNames, kingdomStacks);
 		g.run();
 	}
