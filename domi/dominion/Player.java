@@ -2,6 +2,8 @@ package dominion;
 import java.util.*;
 import dominion.card.*;
 
+//Nina hagen
+
 /**
  * Un joueur de Dominion
  */
@@ -89,7 +91,7 @@ public class Player {
 	}
 	
 	public int getBuys() {
-		return this.nbuys;
+		return this.buys;
 	}
 	
 	public Game getGame() {
@@ -103,9 +105,12 @@ public class Player {
 	 * souhaite diminuer le nombre d'actions)
 	 */
 	public void incrementActions(int n) {
-		this.action=this.action+n;
-		if (this.action<0) {
-			this.action=0;}
+		if ((this.buys==0 && n>=0)||this.buys>0){
+			this.buys+=n;
+			if(this.buys<0){
+				this.buys=0;
+				}
+		} 
 	}
 	
 	/**
