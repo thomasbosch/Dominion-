@@ -3,10 +3,6 @@ import dominion.*;
 import dominion.card.*;
 import dominion.card.base.*;
 
-
-
-//Salut ‡ ae bob the builder et j'ai un trËs gros marteaujjjjjjjjjj
-
 /**
  * Classe pour l'ex√©cution d'une partie de Dominion
  */
@@ -26,7 +22,7 @@ class Main {
 			stack.add(new Village());
 		}
 		
-		// Instancie et ex√©cute une partie genitale
+		// Instancie et ex√©cute une partie
 		Game g = new Game(playerNames, kingdomStacks);
 		g.run();
 	}
