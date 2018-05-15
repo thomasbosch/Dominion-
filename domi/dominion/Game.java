@@ -69,33 +69,48 @@ public class Game {
 		Duchy d;
 		Province p;
 		Curse cu;
-		int ii=0;
-		for (ii=0;ii<60;ii++){
-			supplyStacks.get(0).add(c);
+
+		
+		//Ajout de 60 copper
+		for (i=0;i<60;i++){
+			this.supplyStacks.get(0).add(new Copper());
 		}
 		
-			for (ii=0;ii<40;ii++){
-			supplyStacks.get(1).add(s);
+		
+		//40 Silver
+			for (i=0;i<40;i++){
+			this.supplyStacks.get(1).add(new Silver());
 		}
 		
-			for (ii=0;ii<30;ii++){
-			supplyStacks.get(2).add(g);
+		//30 Gold
+			for (i=0;i<30;i++){
+			this.supplyStacks.get(2).add(new Gold());
 		}
 		
-		for (ii=0;ii<(10*(playerNames.length-1));ii++){
-			supplyStacks.get(3).add(cu);
+		//8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province
+		
+		if(this.players.length==2){
+				for (i=0;i<8;i++){
+			this.supplyStacks.get(4).add(new Province());
+			this.supplyStacks.get(5).add(new Duchy());
+			this.supplyStacks.get(6).add(new Estate());
+				}
+		}
+		else{
+			for (i=0;i<12;i++){
+			this.supplyStacks.get(4).add(new Province());
+			this.supplyStacks.get(5).add(new Duchy());
+			this.supplyStacks.get(6).add(new Estate());
+				}
 		}
 		
-		int temp=8;
-		if(playerNames.length>2){
-			temp=12;
+		//10 * (n-1) Curse oÃ¹ n est le nombre de joueurs dans la partie
+		for (i=0;i<(10*(this.players.length-1));i++){
+			this.supplyStacks.get(3).add(new Curse());
 		}
 		
-		for (ii=0;ii<temp;ii++){
-			supplyStacks.get(4).add(p);
-			supplyStacks.get(5).add(e);
-			supplyStacks.get(6).add(d);
-		}
+	
+
 		
 	}
 	
