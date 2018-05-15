@@ -5,7 +5,7 @@ import dominion.card.base.*;
 
 
 
-//Salut à e m'ae bob the builder et j'ai un très gros marteau
+//Salut à ae bob the builder et j'ai un très gros marteau
 
 /**
  * Classe pour l'exÃ©cution d'une partie de Dominion
