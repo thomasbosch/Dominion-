@@ -1,5 +1,6 @@
 package dominion;
 import java.util.*;
+
 import dominion.card.*;
 
 //Nina hagen
@@ -68,7 +69,7 @@ public class Player {
 	 */
 	public Player(String name, Game game) {
 		this.name=name;
-		this.action=1;
+		this.actions=1;
 		this.buys=1;
 		this.game=game;
 		this.money=money;
@@ -143,8 +144,7 @@ public class Player {
 	 * éléments sont les mêmes que ceux de {@code this.hand}.
 	 */
 	public CardList cardsInHand() {
-		Cardlist <Card> c=new Cardlist<Card>();
-		copy(c,this.hand);
+		CardList c=(CardList) this.hand.clone();
 		return c;
 	}
 	
@@ -154,24 +154,12 @@ public class Player {
 	 * défausse, la pioche et en jeu)
 	 */
 	public CardList totalCards() {
-		Cardlist <Card> c= cardsInHand();
-		int i=this.discard.size,ii=0;
-		
-		for (ii=0;ii<i;ii++){
-			c.add(discard.get(ii));
-		}
-		
-		int i=this.draw.size,ii=0;
-		for (ii=0;ii<i;ii++){
-			c.add(draw.get(ii));
-		}
-		
-		int i=this.inplay.size,ii=0;
-		for (ii=0;ii<i;ii++){
-			c.add(inplay.get(ii));
-		}
-		return c;
-		
+		CardList a=new CardList();
+		a.addAll(this.hand);
+		a.addAll(this.discard);
+		a.addAll(this.draw);
+		a.addAll(this.inPlay);
+		return a;
 	}
 	
 	/**
@@ -182,6 +170,11 @@ public class Player {
 	 * {@code victoryValue()}) des cartes
 	 */
 	public int victoryPoints() {
+		int victoryPoints=0;
+		for(Card a:this.totalCards()){
+			victoryPoints=+a.victoryValue(this);
+		}
+		return victoryPoints;
 	}
 	
 	/**
@@ -196,6 +189,7 @@ public class Player {
 	 * de la classe {@code Game}.
 	 */
 	public List<Player> otherPlayers() {
+		return this.game.otherPlayers(this);
 	}
 	
 	/**
@@ -209,6 +203,17 @@ public class Player {
 	 * @return la carte piochée, {@code null} si aucune carte disponible
 	 */
 	public Card drawCard() {
+		if(this.draw.size()==0){ //Si la pioche est vide
+			this.discard.shuffle(); //On m�lange la d�fausse
+			this.draw.addAll(this.discard);// On ajoute toute la d�fausse � la pioche
+			this.discard=new CardList();//On assigne une nouvelle CardList vide � la d�fausse
+		}
+		
+		if(this.draw.size()==0){
+			return null;
+		}else{
+		return this.draw.remove(0);
+		}
 	}
 	
 	/**
@@ -234,18 +239,39 @@ public class Player {
 	 * Renvoie la liste de toutes les cartes Trésor dans la main du joueur
 	 */
 	public CardList getTreasureCards() {
+		CardList TreasureCards=new CardList();
+		for (Card c:this.hand){
+			if (c.getTypes().contains(CardType.Treasure)){
+				TreasureCards.add(c);
+			}
+		}
+		return TreasureCards;
 	}
 	
 	/**
 	 * Renvoie la liste de toutes les cartes Action dans la main du joueur
 	 */
 	public CardList getActionCards() {
+		CardList ActionCards=new CardList();
+		for (Card c:this.hand){
+			if (c.getTypes().contains(CardType.Action)){
+				ActionCards.add(c);
+			}
+		}
+		return ActionCards;
 	}
 	
 	/**
 	 * Renvoie la liste de toutes les cartes Victoire dans la main du joueur
 	 */
 	public CardList getVictoryCards() {
+		CardList VictoryCards=new CardList();
+		for (Card c:this.hand){
+			if (c.getTypes().contains(CardType.Victory)){
+				VictoryCards.add(c);
+			}
+		}
+		return VictoryCards;
 	}
 	
 	/**
@@ -259,6 +285,9 @@ public class Player {
 	 * {@code inPlay} et exécute la méthode {@code play(Player p)} de la carte.
 	 */
 	public void playCard(Card c) {
+		this.hand.remove(c);
+		this.inPlay.add(c);
+		c.play(this);
 	}
 	
 	/**
@@ -272,6 +301,8 @@ public class Player {
 	 * fait rien.
 	 */
 	public void playCard(String cardName) {
+		Card playedCard=this.hand.getCard(cardName);
+		this.playCard(playedCard);
 	}
 	
 	/**
@@ -284,6 +315,9 @@ public class Player {
 	 * emplacement précédent au préalable.
 	 */
 	public void gain(Card c) {
+		if(c!=null){
+			this.discard.add(c);
+		}
 	}
 	
 	/**
@@ -296,6 +330,10 @@ public class Player {
 	 * null} si aucune carte n'a été prise dans la réserve.
 	 */
 	public Card gain(String cardName) {
+		Card c=this.draw.getCard(cardName);
+		this.draw.remove(c);
+		this.discard.add(c);
+		return c;
 	}
 	
 	/**

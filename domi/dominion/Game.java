@@ -61,43 +61,33 @@ public class Game {
 			players[i]= new Player(playerNames[i],this);
 		}
 			
-			
-		Copper c = new Copper();
-		Silver s;
-		Gold g;
-		Estate e;
-		Duchy d;
-		Province p;
-		Curse cu;
-
-		
 		//Ajout de 60 copper
-		for (i=0;i<60;i++){
+		for (int i=0;i<60;i++){
 			this.supplyStacks.get(0).add(new Copper());
 		}
 		
 		
 		//40 Silver
-			for (i=0;i<40;i++){
+			for (int i=0;i<40;i++){
 			this.supplyStacks.get(1).add(new Silver());
 		}
 		
 		//30 Gold
-			for (i=0;i<30;i++){
+			for (int i=0;i<30;i++){
 			this.supplyStacks.get(2).add(new Gold());
 		}
 		
 		//8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province
 		
 		if(this.players.length==2){
-				for (i=0;i<8;i++){
+				for (int i=0;i<8;i++){
 			this.supplyStacks.get(4).add(new Province());
 			this.supplyStacks.get(5).add(new Duchy());
 			this.supplyStacks.get(6).add(new Estate());
 				}
 		}
 		else{
-			for (i=0;i<12;i++){
+			for (int i=0;i<12;i++){
 			this.supplyStacks.get(4).add(new Province());
 			this.supplyStacks.get(5).add(new Duchy());
 			this.supplyStacks.get(6).add(new Estate());
@@ -105,7 +95,7 @@ public class Game {
 		}
 		
 		//10 * (n-1) Curse oÃƒÂ¹ n est le nombre de joueurs dans la partie
-		for (i=0;i<(10*(this.players.length-1));i++){
+		for (int i=0;i<(10*(this.players.length-1));i++){
 			this.supplyStacks.get(3).add(new Curse());
 		}
 		
@@ -137,13 +127,13 @@ public class Game {
 	 * joueurs, ou -1 si le joueur n'est pas dans le tableau.
 	 */
 	private int indexOfPlayer(Player p) {
-		int test=-1;
+		int index=-1;
 		for(int i=0;i<numberOfPlayers();i++){
-			if (p==this.players[i]){
-				test=i;	 
+			if (p.equals(this.players[i])){
+				index=i;	 
 			}
 		}
-		return test;
+		return index;
 			
 	}
 	
@@ -160,6 +150,22 @@ public class Game {
 	 * premier).
 	 */
 	public List<Player> otherPlayers(Player p) {
+		List<Player> otherPlayers=new ArrayList<Player>();
+		int i=indexOfPlayer(p)+1;
+		while (i<this.players.length){ //penser à check la condition
+			if(i==indexOfPlayer(p)){ // Si on retourne à l'index du joueur p, on sort de la boucle, sinon, on ajoute le joueur à l'index i à notre liste otherPlayers
+				break;
+			}
+			else{
+				otherPlayers.add(this.players[i]);
+				i++;
+			}
+			
+			if(this.players.length==i+1){//Si on arrive en bout de tableau, ben on retourne au début :o
+				i=0;
+			}
+		}
+		return otherPlayers;
 	}
 	
 	/**
@@ -170,6 +176,13 @@ public class Game {
 	 * non-vide de la rÃƒÂ©serve (cartes royaume et cartes communes)
 	 */
 	public CardList availableSupplyCards() {
+		CardList avaivableSupplyCards=new CardList();
+		for(CardList cL:this.supplyStacks){
+			if(!(cL.size()==0)){//Si la pile en cours n'est pas vide, on ajoute la première carte à avaivableSupplyCards
+				avaivableSupplyCards.add(cL.get(0));
+			}
+		}
+		return avaivableSupplyCards;
 	}
 	
 	/**
@@ -207,6 +220,15 @@ public class Game {
 	 * ne correspond
 	 */
 	public Card getFromSupply(String cardName) {
+		
+		Card c=null;
+		for(CardList cL:this.supplyStacks){
+			if(!(cL.getCard(cardName).equals(null))){//Si une carte non null est rétournée, on la renvoie
+				c=cL.getCard(cardName);
+				break;
+			}
+		}
+		return c;
 	}
 	
 	/**
@@ -217,6 +239,15 @@ public class Game {
 	 * ne correspond au nom passÃƒÂ© en argument
 	 */
 	public Card removeFromSupply(String cardName) {
+		Card c=null;
+		for(CardList cL:this.supplyStacks){
+			if(!(cL.getCard(cardName).equals(null))){//Si une carte non null est rétournée, on la renvoie
+				c=cL.getCard(cardName);
+				cL.remove(c);
+				break;
+			}
+		}
+		return c;
 	}
 	
 	/**
@@ -231,8 +262,24 @@ public class Game {
 	 * c'est que la partie est terminÃƒÂ©e)
 	 */
 	public boolean isFinished() {
+		
+		boolean isFinished=false;
+		int emptyLists=0;
+		for(CardList cL:this.supplyStacks){
+			if(cL.size()==0){//Si une carte non null est rétournée, on la renvoie
+				emptyLists++;
+			}
+			if(emptyLists>=3){
+				isFinished=true;
+				break;
+			}
+		}
+		if(supplyStacks.get(4).size()==0){
+			isFinished=true;
+		}
+		
+		return isFinished;
 	}
-	
 	/**
 	 * Boucle d'exÃƒÂ©cution d'une partie.
 	 * 
