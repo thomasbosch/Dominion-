@@ -105,13 +105,14 @@ public class Game {
 	 * @param index indice dans le tableau des joueurs du joueur à renvoyer
 	 */
 	public Player getPlayer(int index) {
+		retuenthis.players[index]. getName();
 	}
 	
 	/**
 	 * Renvoie le nombre de joueurs participant à la partie
 	 */
 	public int numberOfPlayers() {
-		return players.length;
+		return this.players.length;
 	}
 	
 	/**
@@ -121,7 +122,7 @@ public class Game {
 	private int indexOfPlayer(Player p) {
 		int test=-1;
 		for(int i=0;i<numberOfPlayers();i++){
-			if (p=players[i]){
+			if (p=this.players[i]){
 				test=i;	 
 			}
 		}
