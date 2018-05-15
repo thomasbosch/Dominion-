@@ -65,24 +65,35 @@ public class Player {
 	 * préparer la main du joueur après avoir placé les cartes dans la défausse.
 	 */
 	public Player(String name, Game game) {
+		this.name=name;
+		this.action=1;
+		this.buys=1;
+		this.game=game;
+		this.money=money;
+		
 	}
 
 	/**
 	 * Getters et setters
 	 */
 	public String getName() {
+		return this.name;
 	}
 	
 	public int getActions() {
+		return this.action;
 	}
 	
 	public int getMoney() {
+		return this.money;
 	}
 	
 	public int getBuys() {
+		return this.nbuys;
 	}
 	
 	public Game getGame() {
+		return this.game;
 	}
 	
 	/**
@@ -92,6 +103,9 @@ public class Player {
 	 * souhaite diminuer le nombre d'actions)
 	 */
 	public void incrementActions(int n) {
+		this.action=this.action+n;
+		if (this.action<0) {
+			this.action=0;}
 	}
 	
 	/**
@@ -101,6 +115,9 @@ public class Player {
 	 * souhaite diminuer le nombre de pièces)
 	 */
 	public void incrementMoney(int n) {
+		this.money=this.money+n;
+		if (this.money<0) {
+			this.money=0;}
 	}
 	
 	/**
@@ -110,6 +127,9 @@ public class Player {
 	 * souhaite diminuer le nombre d'achats)
 	 */
 	public void incrementBuys(int n) {
+		this.buys=this.buys+n;
+		if (this.buys<0) {
+			this.buys=0;}
 	}
 
 	/**
