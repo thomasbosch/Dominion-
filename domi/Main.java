@@ -3,6 +3,10 @@ import dominion.*;
 import dominion.card.*;
 import dominion.card.base.*;
 
+
+
+//Salut à tous je m'appelle bob the builder et j'ai un très gros marteau
+
 /**
  * Classe pour l'exÃ©cution d'une partie de Dominion
  */
