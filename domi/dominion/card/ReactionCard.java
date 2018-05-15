@@ -1,5 +1,6 @@
 package dominion.card;
 import java.util.*;
+
 import dominion.*;
 
 /**
@@ -7,4 +8,15 @@ import dominion.*;
  * Rmq: les cartes Réaction sont toutes des cartes Action
  */
 public abstract class ReactionCard extends ActionCard {
+
+	public ReactionCard(String name, int cost) {
+		super(name, cost);
+	}
+	
+	public List<CardType> getTypes() {
+		List<CardType> types= new ArrayList<CardType>();
+		types.add(CardType.Action);
+		types.add(CardType.Reaction);
+		return types;
+	}
 }
