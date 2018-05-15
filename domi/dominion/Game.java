@@ -80,7 +80,7 @@ public class Game {
 			supplyStacks(get(2)).add(g);
 		}
 		
-		for (ii=0;ii<(10*playerNames.length(ii++){
+		for (ii=0;ii<(10*(playerNames.length-1));ii++){
 			supplyStacks(get(3)).add(cu);
 		}
 		
@@ -111,6 +111,7 @@ public class Game {
 	 * Renvoie le nombre de joueurs participant à la partie
 	 */
 	public int numberOfPlayers() {
+		return players.length;
 	}
 	
 	/**
@@ -118,6 +119,13 @@ public class Game {
 	 * joueurs, ou -1 si le joueur n'est pas dans le tableau.
 	 */
 	private int indexOfPlayer(Player p) {
+		int test=-1;
+		for(int i=0;i<numberOfPlayers();i++){
+			if (p=players[i]){
+				test=i;	 
+			}
+		}
+			
 	}
 	
 	/**
