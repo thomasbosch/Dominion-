@@ -3,7 +3,7 @@ import java.util.*;
 import dominion.card.*;
 import dominion.card.common.*;
 
-// Bye bye blackbird
+
 
 /**
  * Class reprÃ©sentant une partie de Dominion
