@@ -48,9 +48,53 @@ public class Game {
 	 * - 60 Copper
 	 * - 40 Silver
 	 * - 30 Gold
-	 * - 8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province 	 * - 10 * (n-1) Curse où n est le nombre de joueurs dans la partie
+	 * - 8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province 	 
+	 * - 10 * (n-1) Curse où n est le nombre de joueurs dans la partie
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
+		
+		players = new players[playerNames.length];
+		
+		for(i=0;i<playerNames.length;i++){
+			players[i]=Player(playerNames[i],this)
+		}
+			
+			
+		Copper c;
+		Silver s;
+		Gold g;
+		Estate e;
+		Duchy d;
+		Provine p;
+		Curse cu;
+		
+		for (ii=0;ii<60;ii++){
+			supplyStacks(get(0)).add(c);
+		}
+		
+			for (ii=0;ii<40;ii++){
+			supplyStacks(get(1)).add(s);
+		}
+		
+			for (ii=0;ii<30;ii++){
+			supplyStacks(get(2)).add(g);
+		}
+		
+		for (ii=0;ii<(10*playerNames.length(ii++){
+			supplyStacks(get(3)).add(cu);
+		}
+		
+		int temp=8;
+		if(playerNames.length>2){
+			temp=12;
+		}
+		
+		for (ii=0;ii<temp;ii++){
+			supplyStacks(get(4)).add(p);
+			supplyStacks(get(5)).add(e);
+			supplyStacks(get(6)).add(d);
+		}
+		
 	}
 	
 	/**
