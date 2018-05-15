@@ -138,6 +138,9 @@ public class Player {
 	 * éléments sont les mêmes que ceux de {@code this.hand}.
 	 */
 	public CardList cardsInHand() {
+		Cardlist <Card> c=new Cardlist<Card>();
+		copy(c,this.hand);
+		return c;
 	}
 	
 	/**
@@ -146,6 +149,24 @@ public class Player {
 	 * défausse, la pioche et en jeu)
 	 */
 	public CardList totalCards() {
+		Cardlist <Card> c= cardsInHand();
+		int i=this.discard.size,ii=0;
+		
+		for (ii=0;ii<i;ii++){
+			c.add(discard.get(ii));
+		}
+		
+		int i=this.draw.size,ii=0;
+		for (ii=0;ii<i;ii++){
+			c.add(draw.get(ii));
+		}
+		
+		int i=this.inplay.size,ii=0;
+		for (ii=0;ii<i;ii++){
+			c.add(inplay.get(ii));
+		}
+		return c;
+		
 	}
 	
 	/**
