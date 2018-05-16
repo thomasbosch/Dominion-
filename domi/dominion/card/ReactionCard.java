@@ -14,8 +14,8 @@ public abstract class ReactionCard extends ActionCard {
 	}
 	
 	public List<CardType> getTypes() {
-		List<CardType> types= new ArrayList<CardType>();
-		types.add(CardType.Action);
+
+		List<CardType> types= super.getTypes();
 		types.add(CardType.Reaction);
 		return types;
 	}
