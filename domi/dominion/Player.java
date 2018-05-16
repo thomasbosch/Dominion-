@@ -5,7 +5,7 @@ import dominion.card.*;
 import dominion.card.common.Copper;
 import dominion.card.common.Estate;
 
-//Nina hagen
+//Nina hagen yeah
 
 /**
  * Un joueur de Dominion
@@ -125,10 +125,10 @@ public class Player {
 	 * souhaite diminuer le nombre d'actions)
 	 */
 	public void incrementActions(int n) {
-		if ((this.buys==0 && n>=0)||this.buys>0){
-			this.buys+=n;
-			if(this.buys<0){
-				this.buys=0;
+		if ((this.actions==0 && n>=0)||this.actions>0){
+			this.actions+=n;
+			if(this.actions<0){
+				this.actions=0;
 				}
 		} 
 	}
@@ -190,7 +190,7 @@ public class Player {
 	 */
 	public int victoryPoints() {
 		int victoryPoints=0;
-		for(Card a:this.totalCards()){
+		for(Card a:this.getVictoryCards()){
 			victoryPoints=+a.victoryValue(this);
 		}
 		return victoryPoints;
@@ -223,12 +223,11 @@ public class Player {
 	 */
 	public Card drawCard() {
 		
-			if(this.draw.size()==0){ //Si la pioche est vide
-		}
+			if(this.draw.size()==0){ //Si la pioche est vide		
 			this.discard.shuffle(); //On m�lange la d�fausse
 			this.draw.addAll(this.discard);// On ajoute toute la d�fausse � la pioche
-			this.discard=new CardList();//On assigne une nouvelle CardList vide � la d�fausse
-		
+			this.discard.clear();//On assigne une nouvelle CardList vide � la d�fausse
+			}
 		
 		if(this.draw.size()==0){
 			return null;

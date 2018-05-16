@@ -184,14 +184,14 @@ public class Game {
 	 */
 	public List<Player> otherPlayers(Player p) {
 		List<Player> otherPlayers=new ArrayList<Player>();
-		int i=indexOfPlayer(p)+1;
+		int i=indexOfPlayer(p);
 		while (i<this.players.length){ //penser à check la condition
-			if(i==indexOfPlayer(p)){ // Si on retourne à l'index du joueur p, on sort de la boucle, sinon, on ajoute le joueur à l'index i à notre liste otherPlayers
+			i++;
+			if(i==this.indexOfPlayer(p)){ // Si on retourne à l'index du joueur p, on sort de la boucle, sinon, on ajoute le joueur à l'index i à notre liste otherPlayers
 				break;
 			}
 			else{
 				otherPlayers.add(this.players[i]);
-				i++;
 			}
 			
 			if(this.players.length==i+1){//Si on arrive en bout de tableau, ben on retourne au début :o
