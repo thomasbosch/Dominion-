@@ -75,7 +75,7 @@ public class Game {
 		CardList Curse=new CardList();
 		CardList Estate=new CardList();
 		
-		
+		//salut yo soy tu madre
 		//On ajoute les cartes aux listes #CODE SALE
 		
 		for(int i=0;i<17;i++){
