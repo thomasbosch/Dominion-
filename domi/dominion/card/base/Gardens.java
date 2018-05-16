@@ -1,5 +1,6 @@
 package dominion.card.base;
 import java.util.*;
+
 import dominion.*;
 import dominion.card.*;
 
@@ -9,4 +10,15 @@ import dominion.card.*;
  * Vaut 1VP pour chaque 10 cartes dans votre deck (arrondi à l'unité inférieure).
  */
 public class Gardens extends VictoryCard {
+
+	public Gardens() {
+		super("Garden", 4);
+	}
+
+	public void play(Player p) {
+	}
+	
+	public int victoryValue(Player p) {
+		return p.totalCards().;
+	}
 }

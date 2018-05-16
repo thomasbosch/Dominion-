@@ -15,4 +15,9 @@ public class Moat extends ReactionCard {
 	public Moat(String name, int cost) {
 		super("Moat", 2);
 	}
+
+
+	public void play(Player p) {
+		
+	}
 }
