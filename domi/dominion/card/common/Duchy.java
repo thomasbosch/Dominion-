@@ -13,4 +13,9 @@ public class Duchy extends VictoryCard {
 	public int victoryValue(Player p) {
 		return 3;
 	}
+
+
+	public void play(Player p) {
+
+	}
 }

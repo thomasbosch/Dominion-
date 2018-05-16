@@ -13,4 +13,9 @@ public class Silver extends TreasureCard {
 	public int treasureValue() {
 		return 2;
 	}
+
+
+	public void play(Player p) {
+		
+	}
 }

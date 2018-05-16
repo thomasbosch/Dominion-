@@ -13,4 +13,9 @@ public class Province extends VictoryCard {
 	public int victoryValue(Player p) {
 		return 6;
 	}
+
+
+	public void play(Player p) {
+		
+	}
 }

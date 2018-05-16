@@ -13,4 +13,9 @@ public class Curse extends CurseCard {
 	public int victoryValue(Player p) {
 		return -1;
 	}
+
+
+	public void play(Player p) {
+
+	}
 }

@@ -13,4 +13,9 @@ public class Copper extends TreasureCard {
 	public int treasureValue() {
 		return 1;
 	}
+
+
+	public void play(Player p) {
+
+	}
 }
