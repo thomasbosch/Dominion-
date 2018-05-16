@@ -17,4 +17,5 @@ public abstract class VictoryCard extends Card {
 		types.add(CardType.Victory);
 		return types;
 	}
+	
 }
