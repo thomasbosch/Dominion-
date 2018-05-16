@@ -2,6 +2,8 @@ package dominion;
 import java.util.*;
 
 import dominion.card.*;
+import dominion.card.common.Copper;
+import dominion.card.common.Estate;
 
 //Nina hagen
 
@@ -72,8 +74,25 @@ public class Player {
 		this.actions=1;
 		this.buys=1;
 		this.game=game;
-		this.money=money;
+		this.money=0;
 		
+		CardList draw= new CardList();
+		for (int i=0;i<7;i++){
+			this.draw.add(new Copper());
+		}
+		
+		for (int i=0;i<3;i++){
+			this.draw.add(new Estate());
+		}
+		CardList discard= new CardList();
+		CardList inPlay= new CardList();
+		CardList hand= new CardList();
+		this.draw.shuffle();
+		
+		for(int i=0;i<5;i++){
+		this.hand.add(this.draw.get(0));
+		this.draw.remove(0);
+		}
 	}
 
 	/**
@@ -84,7 +103,7 @@ public class Player {
 	}
 	
 	public int getActions() {
-		return this.action;
+		return this.actions;
 	}
 	
 	public int getMoney() {
@@ -202,12 +221,14 @@ public class Player {
 	 * 
 	 * @return la carte piochÃ©e, {@code null} si aucune carte disponible
 	 */
-	public Card drawCard() {
-		if(this.draw.size()==0){ //Si la pioche est vide
-			this.discard.shuffle(); //On mélange la défausse
-			this.draw.addAll(this.discard);// On ajoute toute la défausse à la pioche
-			this.discard=new CardList();//On assigne une nouvelle CardList vide à la défausse
+	public Card drawCard(int nbCartes) {
+		
+			if(this.draw.size()==0){ //Si la pioche est vide
 		}
+			this.discard.shuffle(); //On mï¿½lange la dï¿½fausse
+			this.draw.addAll(this.discard);// On ajoute toute la dï¿½fausse ï¿½ la pioche
+			this.discard=new CardList();//On assigne une nouvelle CardList vide ï¿½ la dï¿½fausse
+		
 		
 		if(this.draw.size()==0){
 			return null;
@@ -215,6 +236,7 @@ public class Player {
 		return this.draw.remove(0);
 		}
 	}
+	
 	
 	/**
 	 * Renvoie une reprÃ©sentation de l'Ã©tat du joueur sous forme d'une chaÃ®ne
@@ -351,6 +373,18 @@ public class Player {
 	 * lieu
 	 */
 	public Card buyCard(String cardName) {
+		CardList c=this.game.availableSupplyCards();
+		for(int i=0;i<c.size();i++){
+			if (c.get(i).getName().equals(cardName)){
+				if(this.money>=c.get(i).getCost()&& this.buys<0){
+					Card card =this.game.removeFromSupply(cardName);
+					this.draw.add(card);
+					return card;
+				}
+			}
+		}
+
+		return null;	
 	}
 	
 	/**
@@ -474,6 +508,8 @@ public class Player {
 	 * Les compteurs d'actions et achats sont mis Ã  1
 	 */
 	public void startTurn() {
+		this.buys=1;
+		this.actions=1;
 	}
 	
 	/**
@@ -484,6 +520,19 @@ public class Player {
 	 * - Le joueur pioche 5 cartes en main
 	 */
 	public void endTurn() {
+		this.buys=0;
+		this.actions=0;
+		this.money=0;
+		
+		for (int i=0;i<this.inPlay.size();i++){
+			this.discard.add(this.inPlay.get(0));
+			this.inPlay.remove(0);			
+		}
+		
+		for (int i=0;i<this.hand.size();i++){
+			this.discard.add(this.hand.get(0));
+			this.hand.remove(0);			
+		}
 	}
 	
 	/**
@@ -514,5 +563,40 @@ public class Player {
 	 * du joueur
 	 */
 	public void playTurn() {
+		startTurn();
+		
+		CardList cardlist;
+		while (actions>0){
+			 cardlist=getActionCards();
+			String n=chooseCard("Action?",cardlist,true);
+			if(n.equals("")){
+				this.actions=0;
+			}else{
+				playCard(n);
+				
+			}
+			
+		}
+		
+	
+		for(Card c: getTreasureCards()){
+			playCard(c);
+		}
+		CardList cardlistt;
+		while(buys>0){
+			 cardlistt=this.game.availableSupplyCards();
+				String nn=chooseCard("Achat?",cardlistt,true);
+				if(nn.equals("")){
+					this.buys=0;
+				}else{
+					buyCard(nn);
+					
+				}
+			
+			
+		}
+	
+		
+		endTurn();
 	}
 }
