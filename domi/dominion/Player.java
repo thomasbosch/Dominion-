@@ -22,7 +22,7 @@ public class Player {
 	private int actions;
 	
 	/**
-	 * Nombre de pièces disponibles pour acheter des cartes
+	 * Nombre de piÃ¨ces disponibles pour acheter des cartes
 	 */
 	private int money;
 	
@@ -32,7 +32,7 @@ public class Player {
 	private int buys;
 	
 	/**
-	 * Référence vers la partie en cours
+	 * RÃ©fÃ©rence vers la partie en cours
 	 */
 	private Game game;
 	
@@ -42,7 +42,7 @@ public class Player {
 	private CardList hand;
 	
 	/**
-	 * Liste des cartes dans la défausse du joueur
+	 * Liste des cartes dans la dÃ©fausse du joueur
 	 */
 	private CardList discard;
 	
@@ -52,22 +52,22 @@ public class Player {
 	private CardList draw;
 	
 	/**
-	 * Listes des cartes qui ont été jouées pendant le tour courant
+	 * Listes des cartes qui ont Ã©tÃ© jouÃ©es pendant le tour courant
 	 */
 	private CardList inPlay;
 	
 	/**
 	 * Constructeur
 	 * 
-	 * Initialise les différentes piles de cartes du joueur, place 3 cartes
-	 * Estate et 7 cartes Copper dans la défausse du joueur puis fait piocher 5
+	 * Initialise les diffÃ©rentes piles de cartes du joueur, place 3 cartes
+	 * Estate et 7 cartes Copper dans la dÃ©fausse du joueur puis fait piocher 5
 	 * cartes en main au joueur.
 	 * 
 	 * @param name: le nom du joueur
 	 * @param game: le jeu en cours
 	 * 
-	 * Indications: On peut utiliser la méthode {@code this.endTurn()} pour 
-	 * préparer la main du joueur après avoir placé les cartes dans la défausse.
+	 * Indications: On peut utiliser la mÃ©thode {@code this.endTurn()} pour 
+	 * prÃ©parer la main du joueur aprÃ¨s avoir placÃ© les cartes dans la dÃ©fausse.
 	 */
 	public Player(String name, Game game) {
 		this.name=name;
@@ -119,9 +119,9 @@ public class Player {
 	}
 	
 	/**
-	 * Incrémente le nombre d'actions du joueur
+	 * IncrÃ©mente le nombre d'actions du joueur
 	 * 
-	 * @param n nombre d'actions à ajouter (ce nombre peut être négatif si l'on
+	 * @param n nombre d'actions Ã  ajouter (ce nombre peut Ãªtre nÃ©gatif si l'on
 	 * souhaite diminuer le nombre d'actions)
 	 */
 	public void incrementActions(int n) {
@@ -134,10 +134,10 @@ public class Player {
 	}
 	
 	/**
-	 * Incrémente le nombre de pièces du joueur
+	 * IncrÃ©mente le nombre de piÃ¨ces du joueur
 	 * 
-	 * @param n nombre de pièces à ajouter (ce nombre peut être négatif si l'on
-	 * souhaite diminuer le nombre de pièces)
+	 * @param n nombre de piÃ¨ces Ã  ajouter (ce nombre peut Ãªtre nÃ©gatif si l'on
+	 * souhaite diminuer le nombre de piÃ¨ces)
 	 */
 	public void incrementMoney(int n) {
 		this.money=this.money+n;
@@ -146,9 +146,9 @@ public class Player {
 	}
 	
 	/**
-	 * Incrémente le nombre d'achats disponibles du joueur
+	 * IncrÃ©mente le nombre d'achats disponibles du joueur
 	 * 
-	 * @param n nombre d'achats à ajouter (ce nombre peut être négatif si l'on
+	 * @param n nombre d'achats Ã  ajouter (ce nombre peut Ãªtre nÃ©gatif si l'on
 	 * souhaite diminuer le nombre d'achats)
 	 */
 	public void incrementBuys(int n) {
@@ -159,8 +159,8 @@ public class Player {
 
 	/**
 	 * Renvoie une liste des cartes que le joueur a en main.
-	 * La liste renvoyée doit être une nouvelle {@code CardList} dont les 
-	 * éléments sont les mêmes que ceux de {@code this.hand}.
+	 * La liste renvoyÃ©e doit Ãªtre une nouvelle {@code CardList} dont les 
+	 * Ã©lÃ©ments sont les mÃªmes que ceux de {@code this.hand}.
 	 */
 	public CardList cardsInHand() {
 		CardList c=(CardList) this.hand.clone();
@@ -168,9 +168,9 @@ public class Player {
 	}
 	
 	/**
-	 * Renvoie une liste de toutes les cartes possédées par le joueur
-	 * (le deck complet c'est-à-dire toutes les cartes dans la main, la
-	 * défausse, la pioche et en jeu)
+	 * Renvoie une liste de toutes les cartes possÃ©dÃ©es par le joueur
+	 * (le deck complet c'est-Ã -dire toutes les cartes dans la main, la
+	 * dÃ©fausse, la pioche et en jeu)
 	 */
 	public CardList totalCards() {
 		CardList a=new CardList();
@@ -184,8 +184,8 @@ public class Player {
 	/**
 	 * Renvoie le nombre total de points de victoire du joueur
 	 * 
-	 * Ce total est calculé en ajoutant les valeurs individuelles de toutes les
-	 * cartes dans le deck du joueur (en utilisant la méthode
+	 * Ce total est calculÃ© en ajoutant les valeurs individuelles de toutes les
+	 * cartes dans le deck du joueur (en utilisant la mÃ©thode
 	 * {@code victoryValue()}) des cartes
 	 */
 	public int victoryPoints() {
@@ -199,12 +199,12 @@ public class Player {
 	/**
 	 * Renvoie une liste des autres joueurs de la partie.
 	 * 
-	 * Les adversaires sont listés dans l'ordre de jeu, c'est-à-dire que le
-	 * premier de la liste est celui qui joue immédiatement après le joueur,
-	 * puis le suivant, et ainsi de suite jusqu'au joueur qui joue immédiatement
+	 * Les adversaires sont listÃ©s dans l'ordre de jeu, c'est-Ã -dire que le
+	 * premier de la liste est celui qui joue immÃ©diatement aprÃ¨s le joueur,
+	 * puis le suivant, et ainsi de suite jusqu'au joueur qui joue immÃ©diatement
 	 * avant le joueur.
 	 * 
-	 * Rmq: Cette méthode fait appel à la méthode {@code otherPlayers(Player p)}
+	 * Rmq: Cette mÃ©thode fait appel Ã  la mÃ©thode {@code otherPlayers(Player p)}
 	 * de la classe {@code Game}.
 	 */
 	public List<Player> otherPlayers() {
@@ -214,19 +214,19 @@ public class Player {
 	/**
 	 * Pioche une carte dans la pioche du joueur.
 	 * 
-	 * Si la pioche du joueur est vide, on commence par mélanger la défausse
-	 * et transférer toutes les cartes de la défausse dans la pioche.
-	 * On retire et renvoie ensuite la première carte de la pioche si elle n'est
-	 * pas vide (sinon la méthode ne fait rien et renvoie {@code null})
+	 * Si la pioche du joueur est vide, on commence par mÃ©langer la dÃ©fausse
+	 * et transfÃ©rer toutes les cartes de la dÃ©fausse dans la pioche.
+	 * On retire et renvoie ensuite la premiÃ¨re carte de la pioche si elle n'est
+	 * pas vide (sinon la mÃ©thode ne fait rien et renvoie {@code null})
 	 * 
-	 * @return la carte piochée, {@code null} si aucune carte disponible
+	 * @return la carte piochÃ©e, {@code null} si aucune carte disponible
 	 */
 	public Card drawCard() {
 		
 			if(this.draw.size()==0){ //Si la pioche est vide		
-			this.discard.shuffle(); //On m�lange la d�fausse
-			this.draw.addAll(this.discard);// On ajoute toute la d�fausse � la pioche
-			this.discard.clear();//On assigne une nouvelle CardList vide � la d�fausse
+			this.discard.shuffle(); //On mï¿½lange la dï¿½fausse
+			this.draw.addAll(this.discard);// On ajoute toute la dï¿½fausse ï¿½ la pioche
+			this.discard.clear();//On assigne une nouvelle CardList vide ï¿½ la dï¿½fausse
 			}
 		
 		if(this.draw.size()==0){
@@ -240,13 +240,13 @@ public class Player {
 	
 	
 	/**
-	 * Renvoie une représentation de l'état du joueur sous forme d'une chaîne
-	 * de caractères.
+	 * Renvoie une reprÃ©sentation de l'Ã©tat du joueur sous forme d'une chaÃ®ne
+	 * de caractÃ¨res.
 	 * 
-	 * Cette représentation comporte
+	 * Cette reprÃ©sentation comporte
 	 * - le nom du joueur
-	 * - le nombre d'actions, de pièces et d'achats du joueur
-	 * - le nombre de cartes dans la pioche et dans la défausse du joueur
+	 * - le nombre d'actions, de piÃ¨ces et d'achats du joueur
+	 * - le nombre de cartes dans la pioche et dans la dÃ©fausse du joueur
 	 * - la liste des cartes en jeu du joueur
 	 * - la liste des cartes dans la main du joueur
 	 */
@@ -259,7 +259,7 @@ public class Player {
 	}
 	
 	/**
-	 * Renvoie la liste de toutes les cartes Trésor dans la main du joueur
+	 * Renvoie la liste de toutes les cartes TrÃ©sor dans la main du joueur
 	 */
 	public CardList getTreasureCards() {
 		CardList TreasureCards=new CardList();
@@ -300,12 +300,12 @@ public class Player {
 	/**
 	 * Joue une carte de la main du joueur.
 	 * 
-	 * @param c carte à jouer
+	 * @param c carte Ã  jouer
 	 * 
-	 * Cette méthode ne vérifie pas que le joueur a le droit de jouer la carte,
-	 * ni même que la carte se trouve effectivement dans sa main.
-	 * La méthode retire la carte de la main du joueur, la place dans la liste
-	 * {@code inPlay} et exécute la méthode {@code play(Player p)} de la carte.
+	 * Cette mÃ©thode ne vÃ©rifie pas que le joueur a le droit de jouer la carte,
+	 * ni mÃªme que la carte se trouve effectivement dans sa main.
+	 * La mÃ©thode retire la carte de la main du joueur, la place dans la liste
+	 * {@code inPlay} et exÃ©cute la mÃ©thode {@code play(Player p)} de la carte.
 	 */
 	public void playCard(Card c) {
 		this.hand.remove(c);
@@ -316,11 +316,11 @@ public class Player {
 	/**
 	 * Joue une carte de la main du joueur.
 	 * 
-	 * @param cardName nom de la carte à jouer
+	 * @param cardName nom de la carte Ã  jouer
 	 * 
-	 * S'il existe une carte dans la main du joueur dont le nom est égal au
-	 * paramètre, la carte est jouée à l'aide de la méthode 
-	 * {@code playCard(Card c)}. Si aucune carte ne correspond, la méthode ne
+	 * S'il existe une carte dans la main du joueur dont le nom est Ã©gal au
+	 * paramÃ¨tre, la carte est jouÃ©e Ã  l'aide de la mÃ©thode 
+	 * {@code playCard(Card c)}. Si aucune carte ne correspond, la mÃ©thode ne
 	 * fait rien.
 	 */
 	public void playCard(String cardName) {
@@ -331,11 +331,11 @@ public class Player {
 	/**
 	 * Le joueur gagne une carte.
 	 * 
-	 * @param c carte à gagner (éventuellement {@code null})
+	 * @param c carte Ã  gagner (Ã©ventuellement {@code null})
 	 * 
-	 * Si la carte n'est pas {@code null}, elle est placée sur la défausse du
-	 * joueur. On suppose que la carte a correctement été retirée de son 
-	 * emplacement précédent au préalable.
+	 * Si la carte n'est pas {@code null}, elle est placÃ©e sur la dÃ©fausse du
+	 * joueur. On suppose que la carte a correctement Ã©tÃ© retirÃ©e de son 
+	 * emplacement prÃ©cÃ©dent au prÃ©alable.
 	 */
 	public void gain(Card c) {
 		if(c!=null){
@@ -344,13 +344,13 @@ public class Player {
 	}
 	
 	/**
-	 * Le joueur gagne une carte de la réserve
+	 * Le joueur gagne une carte de la rÃ©serve
 	 * 
-	 * @param cardName nom de la carte à gagner. S'il existe une carte dans la 
-	 * réserve ayant ce nom, cette carte est retirée de la réserve et placée 
-	 * sur la défausse du joueur.
-	 * @return la carte qui a été ajoutée à la défausse du joueur, ou {@code 
-	 * null} si aucune carte n'a été prise dans la réserve.
+	 * @param cardName nom de la carte Ã  gagner. S'il existe une carte dans la 
+	 * rÃ©serve ayant ce nom, cette carte est retirÃ©e de la rÃ©serve et placÃ©e 
+	 * sur la dÃ©fausse du joueur.
+	 * @return la carte qui a Ã©tÃ© ajoutÃ©e Ã  la dÃ©fausse du joueur, ou {@code 
+	 * null} si aucune carte n'a Ã©tÃ© prise dans la rÃ©serve.
 	 */
 	public Card gain(String cardName) {
 		Card c=this.draw.getCard(cardName);
@@ -360,17 +360,17 @@ public class Player {
 	}
 	
 	/**
-	 * Le joueur achète une carte de la réserve
+	 * Le joueur achÃ¨te une carte de la rÃ©serve
 	 * 
-	 * La méthode cherche une carte dans la réserve dont le nom est égal au
-	 * paramètre, puis vérifie que le joueur a assez de pièces pour l'acheter 
+	 * La mÃ©thode cherche une carte dans la rÃ©serve dont le nom est Ã©gal au
+	 * paramÃ¨tre, puis vÃ©rifie que le joueur a assez de piÃ¨ces pour l'acheter 
 	 * et au moins un achat disponible.
-	 * Si le joueur peut acheter la carte, le coût de la carte est soustrait à
-	 * l'argent du joueur, le nombre d'achats disponibles est décrémenté de 1 
-	 * et la carte est gagnée par le joueur.
+	 * Si le joueur peut acheter la carte, le coÃ»t de la carte est soustrait Ã 
+	 * l'argent du joueur, le nombre d'achats disponibles est dÃ©crÃ©mentÃ© de 1 
+	 * et la carte est gagnÃ©e par le joueur.
 	 * 
-	 * @param cardName nom de la carte à acheter
-	 * @return la carte qui a été gagnée ou {@code null} si l'achat n'a pas eu 
+	 * @param cardName nom de la carte Ã  acheter
+	 * @return la carte qui a Ã©tÃ© gagnÃ©e ou {@code null} si l'achat n'a pas eu 
 	 * lieu
 	 */
 	public Card buyCard(String cardName) {
@@ -389,33 +389,33 @@ public class Player {
 	}
 	
 	/**
-	 * Attend une entrée de la part du joueur (au clavier) et renvoie le choix
+	 * Attend une entrÃ©e de la part du joueur (au clavier) et renvoie le choix
 	 *  du joueur.
 	 * 
-	 * @param instruction message à afficher à l'écran pour indiquer au joueur
+	 * @param instruction message Ã  afficher Ã  l'Ã©cran pour indiquer au joueur
 	 * la nature du choix qui est attendu
-	 * @param choices une liste de chaînes de caractères correspondant aux
+	 * @param choices une liste de chaÃ®nes de caractÃ¨res correspondant aux
 	 * choix valides attendus du joueur (la liste sera convertie en ensemble 
-	 * par la fonction pour éliminer les doublons, ce qui permet de compter 
+	 * par la fonction pour Ã©liminer les doublons, ce qui permet de compter 
 	 * correctement le nombre d'options disponibles)
-	 * @param canPass booléen indiquant si le joueur a le droit de passer sans
-	 * faire de choix. S'il est autorisé à passer, c'est la chaîne de
-	 * caractères vide ("") qui signifie qu'il désire passer.
+	 * @param canPass boolÃ©en indiquant si le joueur a le droit de passer sans
+	 * faire de choix. S'il est autorisÃ© Ã  passer, c'est la chaÃ®ne de
+	 * caractÃ¨res vide ("") qui signifie qu'il dÃ©sire passer.
 	 * 
-	 * @return la méthode lit l'entrée clavier jusqu'à ce qu'un choix valide
-	 * soit entré par l'utilisateur (un élément de {@code choices} ou
-	 * éventuellement la chaîne vide si l'utilisateur est autorisé à passer).
-	 * Lorsqu'un choix valide est obtenu, il est renvoyé.
+	 * @return la mÃ©thode lit l'entrÃ©e clavier jusqu'Ã  ce qu'un choix valide
+	 * soit entrÃ© par l'utilisateur (un Ã©lÃ©ment de {@code choices} ou
+	 * Ã©ventuellement la chaÃ®ne vide si l'utilisateur est autorisÃ© Ã  passer).
+	 * Lorsqu'un choix valide est obtenu, il est renvoyÃ©.
 	 * 
-	 * Si l'ensemble {@code choices} ne comporte qu'un seul élément et que
+	 * Si l'ensemble {@code choices} ne comporte qu'un seul Ã©lÃ©ment et que
 	 * {@code canPass} est faux, l'unique choix valide est automatiquement
-	 * renvoyé sans lire l'entrée de l'utilisateur.
+	 * renvoyÃ© sans lire l'entrÃ©e de l'utilisateur.
 	 * 
-	 * Si l'ensemble des choix est vide, la chaîne vide ("") est 
-	 * automatiquement renvoyée par la méthode (indépendamment de la valeur de 
+	 * Si l'ensemble des choix est vide, la chaÃ®ne vide ("") est 
+	 * automatiquement renvoyÃ©e par la mÃ©thode (indÃ©pendamment de la valeur de 
 	 * {@code canPass}).
 	 * 
-	 * Exemple d'utilisation pour demander à un joueur de répondre à une 
+	 * Exemple d'utilisation pour demander Ã  un joueur de rÃ©pondre Ã  une 
 	 * question :
 	 * <pre>
 	 * {@code
@@ -425,7 +425,7 @@ public class Player {
 	 * </pre>
 	 */
 	public String choose(String instruction, List<String> choices, boolean canPass) {
-		// La liste de choix est convertie en ensemble pour éviter les doublons
+		// La liste de choix est convertie en ensemble pour Ã©viter les doublons
 		Set<String> choiceSet = new HashSet<String>();
 		for (String c: choices) {
 			choiceSet.add(c);
@@ -434,26 +434,26 @@ public class Player {
 			// Aucun choix disponible
 			return "";
 		} else if (choiceSet.size() == 1 && !canPass) {
-			// Un seul choix possible (renvoyer cet unique élément)
+			// Un seul choix possible (renvoyer cet unique Ã©lÃ©ment)
 			return choiceSet.iterator().next();
 		} else {
 			String input;
-			// Lit l'entrée de l'utilisateur jusqu'à obtenir un choix valide
+			// Lit l'entrÃ©e de l'utilisateur jusqu'Ã  obtenir un choix valide
 			while (true) {
 				System.out.print("\n\n");
-				// affiche l'état du jeu
+				// affiche l'Ã©tat du jeu
 				System.out.print(this.game);
 				System.out.print("\n");
-				// affiche l'état du joueur
+				// affiche l'Ã©tat du joueur
 				System.out.print(this);
 				System.out.print("\n");
 				// affiche l'instruction
 				System.out.println(">>> " + instruction);
 				System.out.print("> ");
-				// lit l'entrée de l'utilisateur au clavier
+				// lit l'entrÃ©e de l'utilisateur au clavier
 				input = this.game.readLine();
 				if (choiceSet.contains(input) || (canPass && input.equals(""))){
-					// si une réponse valide est obtenue, elle est renvoyée
+					// si une rÃ©ponse valide est obtenue, elle est renvoyÃ©e
 					return input;
 				}
 			}
@@ -461,26 +461,26 @@ public class Player {
 	}
 	
 	/**
-	 * Attend une entrée de la part du joueur et renvoie le choix du joueur.
-	 * Dans cette méthode, la liste des choix est donnée sous la forme d'une 
+	 * Attend une entrÃ©e de la part du joueur et renvoie le choix du joueur.
+	 * Dans cette mÃ©thode, la liste des choix est donnÃ©e sous la forme d'une 
 	 * liste de cartes et le joueur doit choisir le nom d'une de ces cartes.
 	 * 
-	 * @param instruction message à afficher à l'écran pour indiquer au joueur
+	 * @param instruction message Ã  afficher Ã  l'Ã©cran pour indiquer au joueur
 	 * la nature du choix qui est attendu
 	 * @param choices liste de cartes parmi lesquelles il faut en choisir une
 	 * parmi lesquelles l'utilisateur doit choisir
-	 * @param canPass booléen indiquant si le joueur a le droit de passer sans
-	 * faire de choix. S'il est autorisé à passer, c'est la chaîne de
-	 * caractères vide ("") qui signifie qu'il désire passer.
+	 * @param canPass boolÃ©en indiquant si le joueur a le droit de passer sans
+	 * faire de choix. S'il est autorisÃ© Ã  passer, c'est la chaÃ®ne de
+	 * caractÃ¨res vide ("") qui signifie qu'il dÃ©sire passer.
 	 * 
-	 * La méthode commence par construire une liste de tous les noms des cartes 
-	 * dans {@code choices} puis appelle la méthode précédente pour faire 
-	 * choisir un nom parmi cette liste à l'utilisateur.
+	 * La mÃ©thode commence par construire une liste de tous les noms des cartes 
+	 * dans {@code choices} puis appelle la mÃ©thode prÃ©cÃ©dente pour faire 
+	 * choisir un nom parmi cette liste Ã  l'utilisateur.
 	 * 
 	 * Exemple d'utilisation pour faire choisir le nom d'une carte Action de sa
-	 * main à un joueur (dans cet exemple le joueur n'a pas le droit de passer 
-	 * s'il a au moins une carte Action en main, mais la méthode peut quand 
-	 * même renvoyer {@code ""} s'il n'a aucune carte Action en main) :
+	 * main Ã  un joueur (dans cet exemple le joueur n'a pas le droit de passer 
+	 * s'il a au moins une carte Action en main, mais la mÃ©thode peut quand 
+	 * mÃªme renvoyer {@code ""} s'il n'a aucune carte Action en main) :
 	 * <pre>
 	 * {@code
 	 * CardList choices = new CardList();
@@ -496,17 +496,17 @@ public class Player {
 		// liste de noms de cartes
 		List<String> stringChoices = new ArrayList<String>();
 		for (Card c: choices) {
-			// tous les noms sont ajoutés à l'ensemble
+			// tous les noms sont ajoutÃ©s Ã  l'ensemble
 			stringChoices.add(c.getName());
 		}
-		// appel de la méthode précédente en passant l'ensemble de noms
+		// appel de la mÃ©thode prÃ©cÃ©dente en passant l'ensemble de noms
 		return this.choose(instruction, stringChoices, canPass);
 	}
 	
 	/**
-	 * Démarre le tour du joueur
+	 * DÃ©marre le tour du joueur
 	 * 
-	 * Les compteurs d'actions et achats sont mis à 1
+	 * Les compteurs d'actions et achats sont mis Ã  1
 	 */
 	public void startTurn() {
 		this.buys=1;
@@ -516,8 +516,8 @@ public class Player {
 	/**
 	 * Termine le tour du joueur
 	 * 
-	 * - Les compteurs d'actions, argent et achats du joueur sont remis à 0
-	 * - Les cartes en main et en jeu sont défaussées
+	 * - Les compteurs d'actions, argent et achats du joueur sont remis Ã  0
+	 * - Les cartes en main et en jeu sont dÃ©faussÃ©es
 	 * - Le joueur pioche 5 cartes en main
 	 */
 	public void endTurn() {
@@ -537,30 +537,30 @@ public class Player {
 	}
 	
 	/**
-	 * Exécute le tour d'un joueur
+	 * ExÃ©cute le tour d'un joueur
 	 * 
-	 * Cette méthode exécute successivement les 5 phases du tour d'un joueur:
+	 * Cette mÃ©thode exÃ©cute successivement les 5 phases du tour d'un joueur:
 	 * 
-	 * 1. (Préparation) la méthode {@code startTurn()} est appelée
+	 * 1. (PrÃ©paration) la mÃ©thode {@code startTurn()} est appelÃ©e
 	 * 
 	 * 2. (Action) Tant que le joueur a des actions disponibles, on lui demande 
-	 * de choisir le nom d'une carte Action de sa main à jouer. Il peut passer à
-	 * tout moment à la phase suivante (soit de manière forcée s'il n'a plus de 
-	 * carte Action en main soit volontairement en entrant la chaîne vide). 
-	 * Lorsqu'il joue une carte Action, la fonction décrémente son nombre 
+	 * de choisir le nom d'une carte Action de sa main Ã  jouer. Il peut passer Ã 
+	 * tout moment Ã  la phase suivante (soit de maniÃ¨re forcÃ©e s'il n'a plus de 
+	 * carte Action en main soit volontairement en entrant la chaÃ®ne vide). 
+	 * Lorsqu'il joue une carte Action, la fonction dÃ©crÃ©mente son nombre 
 	 * d'actions puis joue la carte.
 	 * 
-	 * 3. (Trésor) Le joueur joue toutes les cartes Trésor de sa main 
+	 * 3. (TrÃ©sor) Le joueur joue toutes les cartes TrÃ©sor de sa main 
 	 * automatiquement (dans le jeu de base il n'y a aucune raison de ne pas 
-	 * jouer tous les trésors automatiquement).
+	 * jouer tous les trÃ©sors automatiquement).
 	 * 
 	 * 4. (Achat) Tant que le joueur a au moins un achat disponible, on lui 
-	 * demande de choisir le nom d'une carte de la réserve qu'il veut acheter. 
-	 * Il ne peut acheter que des cartes dont le prix est inférieur à l'argent 
-	 * dont il dispose. Le joueur peut passer (et terminer son tour) à tout 
+	 * demande de choisir le nom d'une carte de la rÃ©serve qu'il veut acheter. 
+	 * Il ne peut acheter que des cartes dont le prix est infÃ©rieur Ã  l'argent 
+	 * dont il dispose. Le joueur peut passer (et terminer son tour) Ã  tout 
 	 * moment pendant cette phase.
 	 * 
-	 * 5. (Fin) La méthode {@code endTurn()} est appelée pour terminer le tour 
+	 * 5. (Fin) La mÃ©thode {@code endTurn()} est appelÃ©e pour terminer le tour 
 	 * du joueur
 	 */
 	public void playTurn() {
