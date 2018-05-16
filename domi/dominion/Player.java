@@ -1,4 +1,4 @@
-package dominion;
+ package dominion;
 import java.util.*;
 
 import dominion.card.*;
@@ -76,7 +76,7 @@ public class Player {
 		this.game=game;
 		this.money=0;
 		
-		CardList draw= new CardList();
+		this.draw= new CardList();
 		for (int i=0;i<7;i++){
 			this.draw.add(new Copper());
 		}
@@ -84,9 +84,9 @@ public class Player {
 		for (int i=0;i<3;i++){
 			this.draw.add(new Estate());
 		}
-		CardList discard= new CardList();
-		CardList inPlay= new CardList();
-		CardList hand= new CardList();
+		this.discard= new CardList();
+		this.inPlay= new CardList();
+		this.hand= new CardList();
 		this.draw.shuffle();
 		
 		for(int i=0;i<5;i++){
@@ -221,7 +221,7 @@ public class Player {
 	 * 
 	 * @return la carte piochée, {@code null} si aucune carte disponible
 	 */
-	public Card drawCard(int nbCartes) {
+	public Card drawCard() {
 		
 			if(this.draw.size()==0){ //Si la pioche est vide
 		}
@@ -233,7 +233,9 @@ public class Player {
 		if(this.draw.size()==0){
 			return null;
 		}else{
-		return this.draw.remove(0);
+		Card c=this.draw.remove(0);
+		this.hand.add(c);
+		return c ;
 		}
 	}
 	
