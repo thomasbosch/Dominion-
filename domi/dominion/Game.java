@@ -55,55 +55,81 @@ public class Game {
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
 		
+		this.scanner=new Scanner(System.in);
+		
+		this.supplyStacks= kingdomStacks;
+		
 		players = new Player[playerNames.length];
 		
 		for(int i=0;i<playerNames.length;i++){
 			players[i]= new Player(playerNames[i],this);
 		}
+		
+		
+		//On instancie les listes de cartes à ajouter à supplyStacks
+		CardList Copper=new CardList();
+		CardList Silver=new CardList();
+		CardList Gold=new CardList();
+		CardList Duchy=new CardList();
+		CardList Province=new CardList();
+		CardList Curse=new CardList();
+		CardList Estate=new CardList();
+		
+		
+		//On ajoute les cartes aux listes #CODE SALE
+		
+		for(int i=0;i<17;i++){
+		this.supplyStacks.add(new CardList());
+		}
 			
 		//Ajout de 60 copper
 		for (int i=0;i<60;i++){
-			this.supplyStacks.get(0).add(new Copper());
+			Copper.add(new Copper());
 		}
 		
 		
 		//40 Silver
 			for (int i=0;i<40;i++){
-			this.supplyStacks.get(1).add(new Silver());
+			Silver.add(new Silver());
 		}
 		
 		//30 Gold
 			for (int i=0;i<30;i++){
-			this.supplyStacks.get(2).add(new Gold());
+			Gold.add(new Gold());
 		}
 		
 		//8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province
 		
 		if(this.players.length==2){
 				for (int i=0;i<8;i++){
-			this.supplyStacks.get(4).add(new Province());
-			this.supplyStacks.get(5).add(new Duchy());
-			this.supplyStacks.get(6).add(new Estate());
+			Province.add(new Province());
+			Duchy.add(new Duchy());
+			Estate.add(new Estate());
 				}
 		}
 		else{
 			for (int i=0;i<12;i++){
-			this.supplyStacks.get(4).add(new Province());
-			this.supplyStacks.get(5).add(new Duchy());
-			this.supplyStacks.get(6).add(new Estate());
+				Province.add(new Province());
+				Duchy.add(new Duchy());
+				Estate.add(new Estate());
 				}
 		}
 		
 		//10 * (n-1) Curse oÃƒÂ¹ n est le nombre de joueurs dans la partie
 		for (int i=0;i<(10*(this.players.length-1));i++){
-			this.supplyStacks.get(3).add(new Curse());
+			Curse.add(new Curse());
 		}
 		
-		for (int a=0;a<kingdomStacks.size();a++) {
-			for (ii=0;ii<10;ii++){
-			supplyStacks.add(kingdomStacks.get(a));
-			}
-		}
+		
+		
+		
+		this.supplyStacks.add(Copper);
+		this.supplyStacks.add(Silver);
+		this.supplyStacks.add(Gold);
+		this.supplyStacks.add(Duchy);
+		this.supplyStacks.add(Province);
+		this.supplyStacks.add(Curse);
+		this.supplyStacks.add(Estate);
 		
 		
 	
