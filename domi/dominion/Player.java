@@ -117,6 +117,11 @@ public class Player {
 	public Game getGame() {
 		return this.game;
 	}
+		public void discard (String cardName) {
+		
+		Card c=this.hand.remove(cardName);
+		this.discard.add(c);
+	}
 	
 	/**
 	 * IncrÃƒÂ©mente le nombre d'actions du joueur
