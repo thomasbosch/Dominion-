@@ -14,7 +14,7 @@ import dominion.card.*;
  */
 public class Market extends ActionCard {
 
-	public Market(String name, int cost) {
+	public Market() {
 		super("Market", 5);
 
 	}

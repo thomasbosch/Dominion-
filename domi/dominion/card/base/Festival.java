@@ -13,7 +13,7 @@ import dominion.card.*;
  */
 public class Festival extends ActionCard {
 
-	public Festival(String name, int cost) {
+	public Festival() {
 		super("Festival", 5);
 	}
 
