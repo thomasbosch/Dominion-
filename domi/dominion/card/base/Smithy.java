@@ -17,7 +17,6 @@ public class Smithy extends ActionCard {
 	}
 
 	public void play(Player p) {
-		
-		
+		p.drawNCard(3);
 	}
 }

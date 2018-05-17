@@ -19,8 +19,7 @@ public class Laboratory extends ActionCard {
 
 
 	public void play(Player p) {
-		p.drawCard();
-		p.drawCard();
+		p.drawNCard(2);
 		p.incrementActions(1);
 	}
 }

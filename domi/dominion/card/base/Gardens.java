@@ -12,11 +12,10 @@ import dominion.card.*;
 public class Gardens extends VictoryCard {
 
 	public Gardens() {
-		super("Garden", 4);
+		super("Gardens", 4);
 	}
 
 	public void play(Player p) {
-		System.out.println("Ntm tu t'es pris pour qui à jouer des cartes jardins ????!!!! >:(");
 	}
 	
 	public int victoryValue(Player p) {
