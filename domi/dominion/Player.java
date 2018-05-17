@@ -574,7 +574,7 @@ public class Player {
 				this.actions=0;
 			}else{
 				playCard(n);
-				
+				this.actions--;
 			}
 			
 		}
@@ -591,7 +591,7 @@ public class Player {
 					this.buys=0;
 				}else{
 					buyCard(nn);
-					
+					this.buys--;
 				}
 			
 			
