@@ -3,6 +3,7 @@ import java.util.*;
 
 import dominion.*;
 import dominion.card.*;
+import dominion.card.common.Copper;
 
 /**
  * Carte Prêteur sur gages (Moneylender)
@@ -12,8 +13,16 @@ import dominion.card.*;
  */
 public class Moneylender extends ActionCard {
 
-	public Moneylender(String name, int cost) {
-		super(name, cost);
+	public Moneylender() {
+		super("Moneylender", 4);
+		
 		// TODO Auto-generated constructor stub
+	}		public void play(Player p) {
+		if(p.cardsInHand().getCard("Copper") instanceof Copper) {
+			p.trashcard("Copper");
+			p.incrementMoney(3);
+		}
 	}
+
+
 }

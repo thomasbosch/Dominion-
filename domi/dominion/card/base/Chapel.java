@@ -10,17 +10,19 @@ import dominion.card.*;
  */
 public class Chapel extends ActionCard {
 	
-	public Chapel(String name, int cost) {
+	public Chapel() {
 		super("Chapel", 2);
 	}
 
 	public void play(Player p) {
-			String m="m";
-			int i=4;
-			while(!m.equals("")&&i>0) {
+			String m;
+			for(int i=0;i<4;i++) {
 			m=p.chooseCard("defausse?",p.cardsInHand(),true);
-			p.discard("m");
-			i--;
+			if(m.equals("")) {
+				i=4;
+			}
+			p.trashcard(m);
+		
 			}
 	}
 }

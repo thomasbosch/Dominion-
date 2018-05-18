@@ -9,7 +9,7 @@ import dominion.card.*;
  * Recevez une carte coÃ»tant jusqu'Ã  4 PiÃ¨ces.
  */
 public class Workshop extends ActionCard {
-	public Workshop(String name, int cost) {
+	public Workshop() {
 		super("Workshop", 3);
 	}
 	
@@ -19,8 +19,11 @@ public class Workshop extends ActionCard {
 		Card ccc;
 		while(!c.isEmpty()) {
 			ccc=c.remove(0);
-			if (ccc.getCost()>4) {
+			if (ccc.getCost()<5) {
+				cc.add(ccc);
+			}
 		}
-
+			String m=p.chooseCard("Choisir?",cc,true);
+			p.gain(m);
 		}
 }

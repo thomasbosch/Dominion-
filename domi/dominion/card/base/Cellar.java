@@ -11,18 +11,23 @@ import dominion.card.*;
  * +1 Carte par carte dÃ©faussÃ©e.
  */
 public class Cellar extends ActionCard {
-	public Cellar(String name, int cost) {
+	public Cellar() {
 		super("Cellar", 2);
 	}
 	
 	public void play(Player p) {
 		p.incrementActions(1);
+		
 		String m="m";
 		int i=0;
+		
 		while(!m.equals("")) {
 		m=p.chooseCard("defausse?",p.cardsInHand(),true);
-		p.discard("m");
-		i++;
+			if(!m.equals("")) {
+				p.discard(m);
+				i++;
+		
+			}
 		}
 		p.drawNCard(i);
 		}
