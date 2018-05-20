@@ -70,31 +70,20 @@ public class Player {
 	 * prÃƒÆ’Ã‚Â©parer la main du joueur aprÃƒÆ’Ã‚Â¨s avoir placÃƒÆ’Ã‚Â© les cartes dans la dÃƒÆ’Ã‚Â©fausse.
 	 */
 	public Player(String name, Game game) {
-		this.name=name;
-		this.game=game;
-		
-		
-		this.actions=1;
-		this.buys=1;
-		this.money=0;
-		
-		this.draw= new CardList();
-		for (int i=0;i<7;i++){
-			this.draw.add(new Copper());
+		this.name = name;
+		this.game = game;
+		this.draw = new CardList();
+		this.discard = new CardList();
+		this.hand = new CardList();
+		this.inPlay = new CardList();
+		for(int i = 0; i < 3; i++){
+			this.gain(new Estate());
 		}
-		
-		for (int i=0;i<3;i++){
-			this.draw.add(new Estate());
+		for(int i = 0; i < 7; i++){
+			this.gain(new Copper());
 		}
-		this.discard= new CardList();
-		this.inPlay= new CardList();
-		this.hand= new CardList();
-		this.draw.shuffle();
-		
-		for(int i=0;i<5;i++){
-		this.hand.add(this.draw.get(0));
-		this.draw.remove(0);
-		}
+
+		this.endTurn();
 	}
 
 	/**
@@ -421,18 +410,26 @@ public void playCard(Card c) {
 	 * lieu
 	 */
 	public Card buyCard(String cardName) {
-		
-			Card c=this.game.getFromSupply(cardName);
-
-				if(this.money>=c.getCost()&& this.buys>0 && c!=null){
-					this.game.removeFromSupply(cardName);
-					this.money-=c.getCost();
-					this.buys--;
-					this.gain(c);
-					return c;
+        Card boughtCard=null;
+        
+		for (Card c: this.game.availableSupplyCards()){
+			
+        	if (cardName.equals(c.getName())){
+        		if (this.getMoney() >= c.getCost()){
+        			
+        			if (this.getBuys() > 0){
+						boughtCard = c;
+        				this.incrementMoney(boughtCard.getCost()*-1);
+        				this.incrementBuys(-1);
+        				
+        				this.gain(cardName);
+        				break;
+					}
 				}
-		return null;	
-				
+        		
+			}
+		}
+		return boughtCard;
 	}
 	
 	/**
@@ -574,16 +571,13 @@ public void playCard(Card c) {
 		this.money=0;
 		
 		//On défausse les cartes en jeu
-		for (Card c:this.inPlay){
-			this.discard.add(c);
-			this.inPlay.remove(c);			
-		}
+		this.discard.addAll(this.inPlay);
+		this.inPlay.clear();
 		
 		//On défausse les cartes en main
-		for (Card c:this.hand){
-			this.discardCard(c);
-		}
-		
+		this.discard.addAll(this.hand);
+		this.hand.clear();
+
 		//On pioche 5 cartes
 		this.drawNCard(5);
 		
@@ -618,7 +612,10 @@ public void playCard(Card c) {
 	 */
 
 	public void playTurn() {
+		
+		//1
 			this.startTurn();
+//2
 		    while(this.actions > 0){
 				this.actions--;
 				String cardname = chooseCard("Action Phase", this.getActionCards(), true);
@@ -629,20 +626,30 @@ public void playCard(Card c) {
 					this.playCard(cardname);
 				}
 	        }
+//3
 	        for(Card c: getTreasureCards()){
 		    	this.playCard(c);
 	        }
+	        
+			
+//4
 	        CardList cardYouCanBuy = new CardList();
 	        while(buys > 0){
 				cardYouCanBuy.clear();
 				for (Card c: this.game.availableSupplyCards()){
 					if (c.getCost() <= this.money){
 						cardYouCanBuy.add(c);
+						
 					}
 				}
+				
+				System.out.println("\n\n\n Carte achetables : "+cardYouCanBuy.toString()+"\n\n\n");
+				
 	        	// On vérifie si le joueur entre une carte trop chère ou s'il appuie uniquement sur ENTREE.
 		    	if (this.buyCard(this.chooseCard("Buy Phase", cardYouCanBuy, true)) == null){
 					this.buys = 0;
+					
+
 				}
 			}
 			endTurn();
