@@ -384,7 +384,9 @@ public class Game {
 	public Player[] getPlayers() {
 		return this.players;
 	}
-
+	public void hadtrash(Card c) {
+		this.trashedCards.add(c);
+	}
 
 	
 }
