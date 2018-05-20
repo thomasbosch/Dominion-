@@ -749,4 +749,9 @@ public void playCard(Card c) {
 
 				System.out.println("ln"+c.toString());
 			}
+		public void discard (String cardName) {
+		
+		Card c=this.hand.remove(cardName);
+		this.discard.add(c);
+	}
 }
