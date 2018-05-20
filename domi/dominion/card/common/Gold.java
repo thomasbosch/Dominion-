@@ -16,6 +16,6 @@ public class Gold extends TreasureCard {
 
 
 	public void play(Player p) {
-		
+	p.incrementMoney(3);	
 	}
 }
