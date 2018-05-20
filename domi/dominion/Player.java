@@ -687,4 +687,49 @@ public class Player {
 	}
 		
 	}
+	
+		public void trashcardinPlay(String cardname) {
+		Card c=this.inPlay.remove(cardname);
+		this.game.hadtrash(c);
+	
+	}
+	
+	public void defaussedeck() {
+		Card c;
+		while(!this.draw.isEmpty()) {
+			c=this.draw.remove(0);
+			this.discard.add(c);
+		}
+		
+		
+	}
+	
+	public Card gaininhand(String cardName) {
+		Card c=this.game.getFromSupply(cardName);
+		if(c!=null) {
+		this.game.removeFromSupply(cardName);
+		this.hand.add(c);
+		return c;
+	}else {
+		return null;
+	}
+		
+	}
+	
+	public Card putondeck(String c) {
+		Card card=this.hand.remove(c);
+		this.draw.add(0,card);
+		return card;
+	}
+	
+	public void revealdeck() {
+		for(Card c:this.hand) {
+			System.out.println("ln"+c.toString());
+		}
+	}
+		
+		public void revealcard(Card c) {
+
+				System.out.println("ln"+c.toString());
+			}
 }
