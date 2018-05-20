@@ -307,31 +307,48 @@ public class Player {
 	 * La mÃƒÆ’Ã‚Â©thode retire la carte de la main du joueur, la place dans la liste
 	 * {@code inPlay} et exÃƒÆ’Ã‚Â©cute la mÃƒÆ’Ã‚Â©thode {@code play(Player p)} de la carte.
 	 */
-	public void playCard(Card c) {
+public void playCard(Card c) {
 		if(c!=null){
 		this.hand.remove(c);
 		this.inPlay.add(c);
-		c.play(this);
+		
 		
 		//Check for reactions
 		if(c.getTypes().contains(CardType.Attack)) {
 			
+			c=(ActionCard) c;
+			
+			List<Player> victimes=this.otherPlayers();
+			
 			for(Player p:this.otherPlayers()){
 				
 				for(Card a:p.hand) {
+					
 					if (a.getTypes().contains(CardType.Reaction)) {
+						
 						ReactionCard rC=(ReactionCard) a;
-						rC.react(p);
+						
+						if(rC.react(p)) {
+							victimes.remove(p);
+							break;
+						}
 					}
+					
 				}
 					
-			};
+			}
 			
-		}
+			AttackCard aC= (AttackCard) c;
+			aC.play(this,victimes);
 		
+		}
+		else {
+			c.play(this);
+		}
 		
 		}
 	}
+	
 	
 	/**
 	 * Joue une carte de la main du joueur.
