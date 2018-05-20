@@ -54,91 +54,49 @@ public class Game {
 	 * - 10 * (n-1) Curse oÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¹ n est le nombre de joueurs dans la partie
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
-		
-		this.trashedCards=new CardList();
-		
-		this.scanner=new Scanner(System.in);
-		
-		this.supplyStacks= kingdomStacks;
-		
-		players = new Player[playerNames.length];
-		
-		for(int i=0;i<playerNames.length;i++){
-			players[i]= new Player(playerNames[i],this);
+		this.scanner = new Scanner(System.in);
+		this.trashedCards = new CardList();
+
+		this.players = new Player[playerNames.length];
+		for(int i = 0; i < playerNames.length; i++){
+			this.players[i] = new Player(playerNames[i], this);
 		}
-		
-		
-		//On instancie les listes de cartes ÃƒÂ  ajouter ÃƒÂ  supplyStacks
-		CardList Copper=new CardList();
-		CardList Silver=new CardList();
-		CardList Gold=new CardList();
-		CardList Duchy=new CardList();
-		CardList Province=new CardList();
-		CardList Curse=new CardList();
-		CardList Estate=new CardList();
-		
-		//salut yo soy tu madre
-		//On ajoute les cartes aux listes #CODE SALE
-		
-		for(int i=0;i<17;i++){
-		this.supplyStacks.add(new CardList());
-		}
-			
-		//Ajout de 60 copper
-		for (int i=0;i<60;i++){
-			Copper.add(new Copper());
-		}
-		
-		
-		//40 Silver
-			for (int i=0;i<40;i++){
-			Silver.add(new Silver());
-		}
-		
-		//30 Gold
-			for (int i=0;i<30;i++){
-			Gold.add(new Gold());
-		}
-		
-		//8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province
-		
-		if(this.players.length==2){
-				for (int i=0;i<8;i++){
-			Province.add(new Province());
-			Duchy.add(new Duchy());
-			Estate.add(new Estate());
-				}
+
+		CardList Copper = new CardList();
+		CardList Silver = new CardList();
+		CardList Gold = new CardList();
+		CardList Estate = new CardList();
+		CardList Duchy = new CardList();
+		CardList Province = new CardList();
+		CardList Curse = new CardList();
+		for (int i = 0; i < 60; i++){ Copper.add(new Copper());}
+		for (int i = 0; i < 40; i++){ Silver.add(new Silver());}
+		for (int i = 0; i < 30; i++){ Gold.add(new Gold());}
+		if (players.length == 2){
+			for (int i = 0; i < 8; i++){
+				Estate.add(new Estate());
+				Duchy.add(new Duchy());
+				Province.add(new Province());
+			}
 		}
 		else{
-			for (int i=0;i<12;i++){
-				Province.add(new Province());
-				Duchy.add(new Duchy());
+			for (int i = 0; i < 12; i++){
 				Estate.add(new Estate());
-				}
+				Duchy.add(new Duchy());
+				Province.add(new Province());
+			}
 		}
-		
-		//10 * (n-1) Curse oÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¹ n est le nombre de joueurs dans la partie
-		for (int i=0;i<(10*(this.players.length-1));i++){
-			Curse.add(new Curse());
-		}
-		
-		
-		
-		
+
+		for (int i = 0; i < 10*(playerNames.length-1); i++){ Curse.add(new Curse());}
+		this.supplyStacks = kingdomStacks;
 		this.supplyStacks.add(Copper);
 		this.supplyStacks.add(Silver);
 		this.supplyStacks.add(Gold);
+		this.supplyStacks.add(Estate);
 		this.supplyStacks.add(Duchy);
 		this.supplyStacks.add(Province);
 		this.supplyStacks.add(Curse);
-		this.supplyStacks.add(Estate);
-		
-		
-	
-
-		
 	}
-
 
 	/**
 	 * Renvoie le joueur correspondant ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  l'indice passÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© en argument

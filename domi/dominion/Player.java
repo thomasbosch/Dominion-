@@ -71,9 +71,11 @@ public class Player {
 	 */
 	public Player(String name, Game game) {
 		this.name=name;
+		this.game=game;
+		
+		
 		this.actions=1;
 		this.buys=1;
-		this.game=game;
 		this.money=0;
 		
 		this.draw= new CardList();
@@ -566,19 +568,25 @@ public void playCard(Card c) {
 	 * - Le joueur pioche 5 cartes en main
 	 */
 	public void endTurn() {
+		//Reset des compteurs
 		this.buys=0;
 		this.actions=0;
 		this.money=0;
 		
-		for (int i=0;i<this.inPlay.size();i++){
-			this.discard.add(this.inPlay.get(0));
-			this.inPlay.remove(0);			
+		//On défausse les cartes en jeu
+		for (Card c:this.inPlay){
+			this.discard.add(c);
+			this.inPlay.remove(c);			
 		}
 		
-		for (int i=0;i<this.hand.size();i++){
-			this.discard.add(this.hand.get(0));
-			this.hand.remove(0);			
+		//On défausse les cartes en main
+		for (Card c:this.hand){
+			this.discardCard(c);
 		}
+		
+		//On pioche 5 cartes
+		this.drawNCard(5);
+		
 	}
 	
 	/**
@@ -608,42 +616,37 @@ public void playCard(Card c) {
 	 * 5. (Fin) La mÃƒÆ’Ã‚Â©thode {@code endTurn()} est appelÃƒÆ’Ã‚Â©e pour terminer le tour 
 	 * du joueur
 	 */
+
 	public void playTurn() {
-		startTurn();
-		
-		CardList cardlist;
-		while (actions>0){
-			 cardlist=getActionCards();
-			String n=chooseCard("Action?",cardlist,true);
-			if(n.equals("")){
-				this.actions=0;
-			}else{
-				playCard(n);
-				
-			}
-			
-		}
-		
-	
-		for(Card c: getTreasureCards()){
-			playCard(c);
-		}
-		CardList cardlistt;
-		while(buys>0){
-			 cardlistt=this.game.availableSupplyCards();
-				String nn=chooseCard("Achat?",cardlistt,true);
-				if(nn.equals("")){
-					this.buys=0;
-				}else{
-					buyCard(nn);
+			this.startTurn();
+		    while(this.actions > 0){
+				this.actions--;
+				String cardname = chooseCard("Action Phase", this.getActionCards(), true);
+				if (cardname.equals("")){
+					this.actions = 0;
 				}
-			
-			
+				else{
+					this.playCard(cardname);
+				}
+	        }
+	        for(Card c: getTreasureCards()){
+		    	this.playCard(c);
+	        }
+	        CardList cardYouCanBuy = new CardList();
+	        while(buys > 0){
+				cardYouCanBuy.clear();
+				for (Card c: this.game.availableSupplyCards()){
+					if (c.getCost() <= this.money){
+						cardYouCanBuy.add(c);
+					}
+				}
+	        	// On vérifie si le joueur entre une carte trop chère ou s'il appuie uniquement sur ENTREE.
+		    	if (this.buyCard(this.chooseCard("Buy Phase", cardYouCanBuy, true)) == null){
+					this.buys = 0;
+				}
+			}
+			endTurn();
 		}
-	
-		
-		endTurn();
-	}
 
 	
 	//MÃ©thodes rajoutÃ©es
