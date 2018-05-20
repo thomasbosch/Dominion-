@@ -17,7 +17,7 @@ public class Chapel extends ActionCard {
 	public void play(Player p) {
 			String m;
 			for(int i=0;i<4;i++) {
-			m=p.chooseCard("defausse?",p.cardsInHand(),true);
+			m=p.chooseCard("ecarte?",p.cardsInHand(),true);
 			if(m.equals("")) {
 				i=4;
 			}
