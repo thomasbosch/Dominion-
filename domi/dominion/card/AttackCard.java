@@ -18,5 +18,6 @@ public abstract class AttackCard extends ActionCard {
 		types.add(CardType.Attack);
 		return types;
 	}
+	public abstract void play (Player p,List<Player> aP);
 	
 }
