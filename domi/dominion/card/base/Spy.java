@@ -18,6 +18,12 @@ public class Spy extends AttackCard {
 
 	public void play(Player p) {
 
+
+		
+	}
+
+	
+	public void play(Player p, List<Player> aP) {
 		p.drawCard();
 		p.incrementActions(1);
 		
@@ -38,7 +44,7 @@ public class Spy extends AttackCard {
 		
 
 		
-		for(Player pL:p.otherPlayers()){
+		for(Player pL:aP){
 			
 			Card card=pL.drawCard();
 			
