@@ -16,10 +16,10 @@ public class Bureaucrat extends AttackCard {
 			}
 
 	@Override
-	public void play(Player p) {
+	public void play(Player p, List<Player> victimes) {
 		p.gaindeck("Silver");
 		
-		for(Player player:p.otherPlayers()) {
+		for(Player player:victimes) {
 
 
 
@@ -34,6 +34,12 @@ public class Bureaucrat extends AttackCard {
 				}
 
 		}
+	}
+
+	@Override
+	public void play(Player p) {
+		// TODO Auto-generated method stub
+		
 	}
 				
 }

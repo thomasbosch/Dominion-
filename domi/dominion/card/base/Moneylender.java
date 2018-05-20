@@ -16,10 +16,12 @@ public class Moneylender extends ActionCard {
 	public Moneylender() {
 		super("Moneylender", 4);
 		
-		// TODO Auto-generated constructor stub
-	}		public void play(Player p) {
+	}
+	
+	
+	public void play(Player p) {
 		if(p.cardsInHand().getCard("Copper") instanceof Copper) {
-			p.trashcard("Copper");
+			p.trashCard(p.cardsInHand().getCard("Copper"));
 			p.incrementMoney(3);
 		}
 	}

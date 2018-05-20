@@ -19,7 +19,8 @@ public class Remodel extends ActionCard {
 	@Override
 	public void play(Player p) {
 		String m=p.chooseCard("Ecarte!",p.cardsInHand(),false);
-		Card card=p.trashcard(m);
+		Card card=p.cardsInHand().getCard(m);
+		p.trashCard(card);
 		int i=card.getCost();
 		
 		

@@ -13,10 +13,8 @@ public class Feast extends ActionCard {
 
 	public Feast() {
 		super("Feast", 4);
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 		public void play(Player p) {
 			CardList c= p.getGame().availableSupplyCards();
 			CardList cc= new CardList();

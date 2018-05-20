@@ -24,7 +24,7 @@ public class Cellar extends ActionCard {
 		while(!m.equals("")) {
 		m=p.chooseCard("defausse?",p.cardsInHand(),true);
 			if(!m.equals("")) {
-				p.discard(m);
+				p.discardCard(p.cardsInHand().getCard(m));
 				i++;
 		
 			}

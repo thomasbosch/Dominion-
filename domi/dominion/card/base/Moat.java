@@ -30,7 +30,7 @@ public class Moat extends ReactionCard {
 		boolean react=false;
 		
 		String choice=p.choose("Esquiver l'attaque ?", choices, false);
-		
+		System.out.println("\nChoice : "+choice);
 		if(choice.equals("y")) {
 			react=true;
 		}

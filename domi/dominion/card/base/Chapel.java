@@ -15,14 +15,21 @@ public class Chapel extends ActionCard {
 	}
 
 	public void play(Player p) {
-			String m;
+			
+			
 			for(int i=0;i<4;i++) {
-			m=p.chooseCard("ecarte?",p.cardsInHand(),true);
+			String m=p.chooseCard("Quel carte écarter ?",p.cardsInHand(),true);
+			
+			System.out.println("Carte écarté choisie : "+m);
 			if(m.equals("")) {
-				i=4;
+				break;
 			}
-			p.trashcard(m);
-		
+			
+			if(p.cardsInHand().getCard(m)!=null) {
+				
+			p.trashCard(p.cardsInHand().getCard(m));
 			}
+			}
+			
 	}
 }

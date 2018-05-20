@@ -27,7 +27,8 @@ public class Mine extends ActionCard {
 		
 		
 		String m=p.chooseCard("Ecarte!",cl,false);
-		Card card=p.trashcard(m);
+		Card card=cl.getCard(m);
+		p.trashCard(card);
 		int i=card.getCost();
 		
 		

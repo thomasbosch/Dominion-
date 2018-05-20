@@ -17,10 +17,14 @@ public class Witch extends AttackCard {
 
 	}
 		public void play(Player p) {
-		p.drawNCard(2);
-		
-		for (Player player:p.otherPlayers()){
-			player.gain("Curse");
-		}
+
 	}
+	
+		public void play(Player p, List<Player> victimes) {
+			p.drawNCard(2);
+			
+			for (Player player:victimes){
+				player.gain("Curse");
+			}
+		}
 }

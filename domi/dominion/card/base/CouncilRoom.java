@@ -24,8 +24,6 @@ public class CouncilRoom extends ActionCard {
 		
 		for (Player player:p.otherPlayers()){
 			player.drawCard();
-
-			
 		}
 
 	}

@@ -16,14 +16,19 @@ public  class Militia extends AttackCard {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+
 	public void play(Player p) {
+
+	}
+
+
+	public void play(Player p, List<Player> victimes) {
 		p.incrementMoney(2);
 		
-		for (Player player:p.otherPlayers()){
+		for (Player player:victimes){
 			while(player.cardsInHand().size()>3) {
 				String m=player.chooseCard("defausse!", player.cardsInHand(), false);
-				player.discard(m);
+				player.discardCard(player.cardsInHand().getCard(m));
 			}
 		}
 		
